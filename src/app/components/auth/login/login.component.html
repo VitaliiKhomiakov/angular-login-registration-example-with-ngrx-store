@@ -1,0 +1,30 @@
+<ion-content padding>
+  <form class="login-form" (keyup.enter)="login()" (ngSubmit)="login()" [formGroup]="loginForm" >
+    <ion-grid class="login-form-grid">
+      <ion-row class="row" justify-content-center>
+        <ion-col align-self-center>
+          <div text-center>
+            <h3>Авторизация</h3>
+          </div>
+          <div padding>
+            <ion-item>
+              <ion-input name="email" type="email" placeholder="Электронная почта или телефон" formControlName="emailOrPhone" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="password" type="password" placeholder="Пароль" formControlName="password" required></ion-input>
+            </ion-item>
+          </div>
+          <div padding>
+            <ion-button size="large" type="submit" [disabled]="loginForm.invalid" expand="block">Вход</ion-button>
+          </div>
+          <div class="login-form-or">
+            или
+          </div>
+          <div padding>
+            <ion-button routerLink="/auth/sign-up" size="large" type="button" expand="block">Регистрация</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

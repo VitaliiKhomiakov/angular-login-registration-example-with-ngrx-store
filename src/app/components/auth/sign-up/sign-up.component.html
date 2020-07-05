@@ -1,0 +1,42 @@
+<ion-content>
+  <form class="sign-up-form" (keyup.enter)="signUp()" (ngSubmit)="signUp()" [formGroup]="signUpForm">
+    <ion-grid class="sign-up-form-grid">
+      <ion-row class="row" color="primary" justify-content-center>
+        <ion-col align-self-center>
+          <div text-center>
+            <h3>Регистрация</h3>
+          </div>
+          <div padding>
+            <ion-item>
+              <ion-input name="name" type="text" placeholder="Имя" formControlName="firstName" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="name" type="text" placeholder="Фамилия" formControlName="lastName" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="email" type="email" placeholder="Электронная почта" formControlName="email" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="phone" type="tel" placeholder="Телефон" formControlName="phone"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="password" type="password" placeholder="Пароль" formControlName="password" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="confirm" type="password" placeholder="Подтверждение пароля" formControlName="confirmPassword" required></ion-input>
+            </ion-item>
+          </div>
+          <div padding>
+            <ion-button  size="large" type="submit" [disabled]="signUpForm.invalid" expand="block">Регистрация</ion-button>
+          </div>
+          <div class="sign-up-form-or">
+            или
+          </div>
+          <div padding>
+            <ion-button routerLink="/auth/login" size="large" type="button" expand="block">Войти в аккаунт</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

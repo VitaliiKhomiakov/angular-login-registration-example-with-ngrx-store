@@ -1,0 +1,16 @@
+.global-spinner-wrapper {
+  height: 100%;
+  width: 100%;
+  background-color: #e1d4ff;
+  z-index: 1;
+  opacity: 0.6;
+
+  .global-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+    background-size: 100%;
+  }
+}
