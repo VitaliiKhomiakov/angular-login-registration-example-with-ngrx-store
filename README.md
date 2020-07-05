@@ -1,6 +1,6 @@
 # Angular 9 [IONIC] - Basic examples
 
-- Authorization example
+- Authorization example - Registration and Login
 - Basic NGRX Store (Actions, Effects, Reducers, Selectors) example
 - Config service example
 - Interceptor example
