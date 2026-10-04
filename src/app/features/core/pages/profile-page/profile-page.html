@@ -1,0 +1,28 @@
+@let loading = isLoading();
+@let errorMessage = error();
+<h1 #heading tabindex="-1">Profile</h1>
+@if (loading) {
+  <div class="pending" role="status">
+    <mat-spinner diameter="24" aria-hidden="true" /><span>Loading your profile…</span>
+  </div>
+}
+@if (errorMessage) {
+  <p class="failure" role="alert">{{ errorMessage }}</p>
+  <button mat-button type="button" [disabled]="loading" (click)="retrySession()">
+    Retry session restoration
+  </button>
+}
+@if (user(); as profile) {
+  <p class="name">
+    {{ profile.firstName }} {{ profile.middleName ? profile.middleName + ' ' : ''
+    }}{{ profile.lastName }}
+  </p>
+  <dl>
+    <dt>Email</dt>
+    <dd>{{ profile.email }}</dd>
+    @if (profile.phone) {
+      <dt>Phone number</dt>
+      <dd>{{ profile.phone }}</dd>
+    }
+  </dl>
+}

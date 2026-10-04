@@ -1,0 +1,27 @@
+@use '@angular/material' as mat;
+
+html {
+  @include mat.theme(
+    (
+      color: mat.$azure-palette,
+      typography: system-ui,
+      density: 0,
+    )
+  );
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  color: var(--mat-sys-on-surface);
+  background: var(--mat-sys-surface-container-low);
+  font-family: system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+:focus-visible {
+  outline: 3px solid var(--mat-sys-primary);
+  outline-offset: 4px;
+}

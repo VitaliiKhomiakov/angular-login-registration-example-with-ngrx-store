@@ -1,0 +1,29 @@
+:host {
+  display: block;
+}
+.row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-block: 1rem;
+}
+.description {
+  flex: 1 1 10rem;
+  min-width: 0;
+}
+.title {
+  margin: 0 0 0.35rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.completed {
+  text-decoration: line-through;
+}
+.status {
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 0.875rem;
+}
+button {
+  flex-shrink: 0;
+}

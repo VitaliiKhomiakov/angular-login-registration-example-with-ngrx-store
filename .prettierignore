@@ -1,0 +1,15 @@
+# Dependencies and generated output
+node_modules/
+.angular/
+dist/
+out-tsc/
+coverage/
+playwright-report/
+.cache/
+package-lock.json
+public/mockServiceWorker.js
+
+# Local agent settings and workflow instructions
+.agents/
+.codex/
+AGENTS.md

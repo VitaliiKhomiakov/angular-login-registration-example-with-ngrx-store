@@ -31,3 +31,11 @@ npm-debug.log*
 /www
 /src/assets/config
 !/src/assets/config/config.example.json
+
+/.angular/
+/out-tsc/
+/playwright-report/
+/.cache/
+
+/legacy/src/assets/config/*
+!/legacy/src/assets/config/config.example.json

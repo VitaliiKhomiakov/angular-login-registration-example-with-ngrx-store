@@ -1,0 +1,51 @@
+:host {
+  display: block;
+}
+h1 {
+  margin: 0 0 0.5rem;
+}
+.intro,
+.switch {
+  color: var(--mat-sys-on-surface-variant);
+}
+.intro {
+  margin: 0 0 1.75rem;
+}
+form {
+  display: grid;
+  gap: 0.75rem;
+}
+mat-form-field {
+  width: 100%;
+}
+.pending {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding-block: 0.5rem;
+}
+.failure,
+.notice {
+  margin-block: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+.failure {
+  color: var(--mat-sys-on-error-container);
+  background: var(--mat-sys-error-container);
+}
+.failure p {
+  margin: 0 0 0.5rem;
+}
+.notice {
+  color: var(--mat-sys-on-secondary-container);
+  background: var(--mat-sys-secondary-container);
+}
+.switch {
+  margin: 1.5rem 0 0;
+}
+a {
+  color: var(--mat-sys-primary);
+  text-underline-offset: 0.2em;
+}

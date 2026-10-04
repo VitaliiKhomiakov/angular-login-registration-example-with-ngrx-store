@@ -1,0 +1,63 @@
+@let selectedFilter = filter();
+@let busy = isBusy();
+@let errorMessage = error();
+@let taskStatus = status();
+@let displayedTasks = visibleTasks();
+@let total = totalCount();
+@let pendingId = pendingTaskId();
+<h1 #heading tabindex="-1">My tasks</h1>
+<p data-testid="task-counts">{{ remainingCount() }} remaining of {{ total }}</p>
+<div class="filters" role="group" aria-label="Filter tasks">
+  <button
+    mat-button
+    type="button"
+    [attr.aria-pressed]="selectedFilter === 'all'"
+    (click)="setFilter('all')"
+  >
+    All
+  </button>
+  <button
+    mat-button
+    type="button"
+    [attr.aria-pressed]="selectedFilter === 'active'"
+    (click)="setFilter('active')"
+  >
+    Active
+  </button>
+  <button
+    mat-button
+    type="button"
+    [attr.aria-pressed]="selectedFilter === 'completed'"
+    (click)="setFilter('completed')"
+  >
+    Completed
+  </button>
+</div>
+@if (busy) {
+  <div class="pending" role="status">
+    <mat-spinner diameter="24" aria-hidden="true" />
+    <span>{{ isLoading() ? 'Loading your tasks…' : isSaving() ? 'Saving task…' : '' }}</span>
+  </div>
+}
+@if (errorMessage) {
+  <p class="failure" role="alert">{{ errorMessage }}</p>
+  @if (taskStatus === 'error') {
+    <button mat-button type="button" [disabled]="busy" (click)="retry()">
+      Retry loading tasks
+    </button>
+  }
+}
+<ul [attr.aria-busy]="busy">
+  @for (task of displayedTasks; track task.id) {
+    <li [attr.aria-busy]="pendingId === task.id">
+      <app-task-item
+        [task]="task"
+        [disabled]="busy"
+        (completionChanged)="changeCompletion(task.id, $event)"
+      />
+    </li>
+  }
+</ul>
+@if (taskStatus === 'ready' && displayedTasks.length === 0) {
+  <p>{{ total === 0 ? 'No tasks yet.' : 'No tasks match this filter.' }}</p>
+}

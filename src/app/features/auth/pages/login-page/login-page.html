@@ -1,0 +1,65 @@
+@let loading = isLoading();
+@let errorMessage = error();
+<h1 #heading tabindex="-1">Sign in</h1>
+<p class="intro">Sign in to view your profile.</p>
+@if (registrationStatus() === 'success') {
+  <p class="notice" role="status">Registration complete. Sign in to your account.</p>
+}
+@if (errorMessage) {
+  <div class="failure">
+    <p role="alert">{{ errorMessage }}</p>
+    <button
+      mat-button
+      type="button"
+      data-testid="retry-session"
+      [disabled]="loading"
+      (click)="retrySession()"
+    >
+      Retry session restoration
+    </button>
+  </div>
+}
+<form novalidate (submit)="$event.preventDefault(); submitLogin()" [attr.aria-busy]="loading">
+  <mat-form-field appearance="outline" subscriptSizing="dynamic">
+    <mat-label>Email or phone number</mat-label>
+    <input
+      matInput
+      id="emailOrPhone"
+      autocomplete="username"
+      [formField]="loginForm.emailOrPhone"
+    />
+    @let emailOrPhoneState = loginForm.emailOrPhone();
+    @if (emailOrPhoneState.touched()) {
+      <mat-error>
+        @for (error of emailOrPhoneState.errors(); track error.kind) {
+          {{ error.message }}
+        }
+      </mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field appearance="outline" subscriptSizing="dynamic">
+    <mat-label>Password</mat-label>
+    <input
+      matInput
+      id="password"
+      type="password"
+      autocomplete="current-password"
+      [formField]="loginForm.password"
+    />
+    @let passwordState = loginForm.password();
+    @if (passwordState.touched()) {
+      <mat-error>
+        @for (error of passwordState.errors(); track error.kind) {
+          {{ error.message }}
+        }
+      </mat-error>
+    }
+  </mat-form-field>
+  <button mat-flat-button type="submit" [disabled]="loading">Sign in</button>
+  @if (loading) {
+    <div class="pending" role="status">
+      <mat-spinner diameter="24" aria-hidden="true" /><span>Signing in…</span>
+    </div>
+  }
+</form>
+<p class="switch">Don’t have an account? <a routerLink="/auth/sign-up">Sign up</a></p>

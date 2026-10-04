@@ -1,0 +1,20 @@
+@let currentTask = task();
+@let actionLabel = currentTask.completed ? 'Mark active' : 'Mark complete';
+<div class="row">
+  <div class="description">
+    <p class="title" [class.completed]="currentTask.completed">{{ currentTask.title }}</p>
+    <span class="status" data-testid="task-completion">{{
+      currentTask.completed ? 'Completed' : 'Active'
+    }}</span>
+  </div>
+  <button
+    mat-stroked-button
+    type="button"
+    disabledInteractive
+    [disabled]="disabled()"
+    [attr.aria-label]="actionLabel + ': ' + currentTask.title"
+    (click)="changeCompletion()"
+  >
+    {{ actionLabel }}
+  </button>
+</div>

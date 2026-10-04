@@ -1,0 +1,4 @@
+{
+  "extends": "./tsconfig.app.json",
+  "files": ["src/main.ts", "e2e/auth-bootstrap.ts"]
+}

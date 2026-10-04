@@ -1,0 +1,94 @@
+@let loading = isLoading();
+@let errorMessage = error();
+<h1 #heading tabindex="-1">Sign up</h1>
+<p class="intro">Create an account to save your profile.</p>
+@if (errorMessage) {
+  <p class="failure" role="alert">{{ errorMessage }}</p>
+}
+<form novalidate (submit)="$event.preventDefault(); submitSignUp()" [attr.aria-busy]="loading">
+  <div class="names">
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <mat-label>First name</mat-label>
+      <input matInput id="firstName" autocomplete="given-name" [formField]="signUpForm.firstName" />
+      @let firstNameState = signUpForm.firstName();
+      @if (firstNameState.touched()) {
+        <mat-error>
+          @for (error of firstNameState.errors(); track error.kind) {
+            {{ error.message }}
+          }
+        </mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <mat-label>Last name</mat-label>
+      <input matInput id="lastName" autocomplete="family-name" [formField]="signUpForm.lastName" />
+      @let lastNameState = signUpForm.lastName();
+      @if (lastNameState.touched()) {
+        <mat-error>
+          @for (error of lastNameState.errors(); track error.kind) {
+            {{ error.message }}
+          }
+        </mat-error>
+      }
+    </mat-form-field>
+  </div>
+  <mat-form-field appearance="outline" subscriptSizing="dynamic">
+    <mat-label>Email</mat-label>
+    <input matInput id="email" type="email" autocomplete="email" [formField]="signUpForm.email" />
+    @let emailState = signUpForm.email();
+    @if (emailState.touched()) {
+      <mat-error>
+        @for (error of emailState.errors(); track error.kind) {
+          {{ error.message }}
+        }
+      </mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field appearance="outline" subscriptSizing="dynamic">
+    <mat-label>Phone number (optional)</mat-label>
+    <input matInput id="phone" type="tel" autocomplete="tel" [formField]="signUpForm.phone" />
+  </mat-form-field>
+  <mat-form-field appearance="outline" subscriptSizing="dynamic">
+    <mat-label>Password</mat-label>
+    <input
+      matInput
+      id="password"
+      type="password"
+      autocomplete="new-password"
+      [formField]="signUpForm.password"
+    />
+    @let passwordState = signUpForm.password();
+    @if (passwordState.touched()) {
+      <mat-error>
+        @for (error of passwordState.errors(); track error.kind) {
+          {{ error.message }}
+        }
+      </mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field appearance="outline" subscriptSizing="dynamic">
+    <mat-label>Confirm password</mat-label>
+    <input
+      matInput
+      id="confirmPassword"
+      type="password"
+      autocomplete="new-password"
+      [formField]="signUpForm.confirmPassword"
+    />
+    @let confirmPasswordState = signUpForm.confirmPassword();
+    @if (confirmPasswordState.touched()) {
+      <mat-error>
+        @for (error of confirmPasswordState.errors(); track error.kind) {
+          {{ error.message }}
+        }
+      </mat-error>
+    }
+  </mat-form-field>
+  <button mat-flat-button type="submit" [disabled]="loading">Create account</button>
+  @if (loading) {
+    <div class="pending" role="status">
+      <mat-spinner diameter="24" aria-hidden="true" /><span>Creating your account…</span>
+    </div>
+  }
+</form>
+<p class="switch">Already have an account? <a routerLink="/auth/login">Sign in</a></p>

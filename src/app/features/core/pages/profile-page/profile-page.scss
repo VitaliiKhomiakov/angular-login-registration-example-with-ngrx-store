@@ -1,0 +1,34 @@
+:host {
+  display: block;
+}
+h1 {
+  margin-top: 0;
+}
+.name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+dl {
+  display: grid;
+  gap: 0.5rem;
+  margin-block: 1.5rem;
+}
+dt {
+  color: var(--mat-sys-on-surface-variant);
+}
+dd {
+  margin: 0 0 0.5rem;
+  overflow-wrap: anywhere;
+}
+.pending {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.failure {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: var(--mat-sys-on-error-container);
+  background: var(--mat-sys-error-container);
+}

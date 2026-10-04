@@ -1,0 +1,10 @@
+<nav aria-label="Account navigation">
+  <a mat-button routerLink="/profile" routerLinkActive="active" ariaCurrentWhenActive="page"
+    >Profile</a
+  >
+  <a mat-button routerLink="/tasks" routerLinkActive="active" ariaCurrentWhenActive="page"
+    >My tasks</a
+  >
+  <button mat-stroked-button type="button" data-testid="logout" (click)="logout()">Sign out</button>
+</nav>
+<router-outlet />
